@@ -5,7 +5,7 @@ a {
 }
 button {
   padding: 5px 10px;
-  border: 1px solid #ffffff;
+  border: 1px solid #000000;
   background-color: transparent;
   border-radius: 1000px;
   cursor: pointer;
@@ -15,7 +15,7 @@ html, body {
   height: 100%;
 }
 body {
-  background-color: #000000;
+  background-color: #FFFFFF;
 }
 /*控制按钮群*/
 .control {

@@ -4,7 +4,7 @@
         <meta charset="UTF-8"/>
         <title>视频播放器</title>
 		<link rel="stylesheet" href="Video.css"/>
-        <script src="../jquery-3.6.0.min.js"></script>
+        <script src="jquery-3.6.0.min.js"></script>
         <style>
             .video-play-panel {
                 position:relative;
@@ -12,7 +12,6 @@
             }
             
         </style>
-        <link href="Video.css" rel="stylesheet" type="text/css">
     <a href="FileAudio.html"><button id="audio">切换到音乐播放器</button></a>
     </head>
     <body>
@@ -24,13 +23,14 @@
         <input type="file" name="file[]" class="file_multi_video" accept="video/*">
     </body>
     <script>
+		
         player = document.getElementById('video-element');
-
-        $(document).on("change", ".file_multi_video", function(evt) {
+        
+		$(document).on("change", ".file_multi_video", function(evt) {
             var $source = $('#video_here');
             $source[0].src = URL.createObjectURL(this.files[0]);
             $source.parent()[0].load();
-        });
+        })
 		
         // Updates a button's title, innerHTML and CSS class
         function changeButtonType(btn, value) {
@@ -41,4 +41,5 @@
         document.addEventListener('contextmenu', event => event.preventDefault());
     
     </script>
+
 </html>
