@@ -44,6 +44,7 @@
   var singleLoop = false; //是否单曲循环
 
   var app = {
+	  //初始化
     init: function() {
       this.render(musics);
 
@@ -54,11 +55,13 @@
 
     bind: function() {
       var that = this;
-
+		//当音频播放结束时触发
       audio.onended = function() {
+		  //被选择的元素要触发的事件
         app.trigger(singleLoop ? nowIndex : (nowIndex + 1));
       };
 
+		//单曲循环的点击事件
       $(".play-type").on("click", function() {
         singleLoop = !singleLoop;
         $(this).html(singleLoop ? "列表循环" : "单曲循环");
@@ -119,7 +122,8 @@
       this.stop();
 
       nowIndex = index;
-
+		
+		//获取列表播放
       $(".music-list li").eq(index).addClass("playing").siblings().removeClass("playing");
 
       if (musics[index].src) {
