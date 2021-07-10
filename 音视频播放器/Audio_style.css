@@ -92,7 +92,7 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
 
-  font-family: "微软雅黑" "宋体";
+  font-family: "微软雅黑";
 
   -webkit-transition: background-color .3s, padding .3s;
   transition: background-color .3s, padding .3s;
