@@ -27,12 +27,6 @@
     <script>
         player = document.getElementById('video-element');
 
-        // $.each($("#video-element"), function(){
-        //     console.log(this);
-        //     this.controls = false; 
-        // }); 
-        // player.controls = false;
-
         $(document).on("change", ".file_multi_video", function(evt) {
             var $source = $('#video_here');
             $source[0].src = URL.createObjectURL(this.files[0]);
