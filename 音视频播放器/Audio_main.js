@@ -37,8 +37,8 @@
   var audio = $(".music-player")[0];
 	//jquery.js 中将 jquery 变量赋值给了 ＄ 符号。
   var musics = [{
-    name: "稻香",
-    src: "music.mp3"
+    name: "",
+    src: ""
   }];
   var nowIndex = 0;   //当前播放到的音乐索引
   var singleLoop = false; //是否单曲循环

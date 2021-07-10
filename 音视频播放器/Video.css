@@ -17,19 +17,17 @@ html, body {
 body {
   background-color: #FFFFFF;
 }
-/*控制按钮群*/
-.control {
-  height: 65px;
-  overflow: hidden;
+.video-play-panel{
+	position: absolute;
+	
+}
+.right_side{	
+  position: absolute;
+  width: 340px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  color: rgba(255, 255, 255, .4);
+  background-color: rgba(255, 255, 255, .1);
 }
 
-.o-btns {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.o-btns button {
-  width: 74px;
-  color: #fff;
-  border-color: #ffffff;
-}

@@ -14,15 +14,25 @@
         </style>
     <a href="FileAudio.html"><button id="audio">切换到音乐播放器</button></a>
     </head>
-    <body>
+<body>
         <div class="video-play-panel">
-            <video width="960"  height="650" id="video-element" controls="controls" >
+            <video width="1080" height="660" id="video-element" controls="controls" >
               <source src="" id="video_here" align="center" >
             </video>
-        </div>
-        <input type="file" name="file[]" class="file_multi_video" accept="video/*">
-    </body>
+	</div>
+	<div class="right_side">
+				<button class="add_video">添加视频</button>
+				<input name="file[]" type="file" class="file_multi_video" accept="video/*">
+				<div class="video_contain">
+    				<ul class="video_list"></ul>
+    			</div>
+			</div>
+</body>
     <script>
+		
+		$(".add_video").on('click',function(){
+			$(.file_multi_video).click();
+		})
 		
         player = document.getElementById('video-element');
         
@@ -39,7 +49,7 @@
         }
 
         document.addEventListener('contextmenu', event => event.preventDefault());
-    
+    	
     </script>
 
 </html>
