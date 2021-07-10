@@ -29,13 +29,14 @@
 			</div>
 </body>
     <script>
-		
+		//使用on绑定change事件，获取input实时输入值
 		$(".add_video").on('click',function(){
 			$(.file_multi_video).click();
 		})
 		
         player = document.getElementById('video-element');
-        
+		
+        //使用on绑定change事件，获取input实时输入值
 		$(document).on("change", ".file_multi_video", function(evt) {
             var $source = $('#video_here');
             $source[0].src = URL.createObjectURL(this.files[0]);
@@ -47,7 +48,7 @@
             btn.title     = value;
             btn.className = value;
         }
-
+		
         document.addEventListener('contextmenu', event => event.preventDefault());
     	
     </script>
