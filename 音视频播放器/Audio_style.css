@@ -69,11 +69,11 @@ body {
 }
 
 .o-btns input[type='file'] {
-  display: none;
+  display: none;/*是否隐藏选择文件的按钮*/
 }
 
-/*音乐列表*/
-.music-contain {
+/*视频列表*/
+.audio-contain {
   position: absolute;
   width: 100%;
   bottom: 0;
@@ -81,7 +81,7 @@ body {
   overflow: auto;
 }
 
-.music-list li {
+.audio-list li {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -98,12 +98,12 @@ body {
   transition: background-color .3s, padding .3s;
 }
 
-.music-list li:hover {
+.audio-list li:hover {
   padding-left: 20px;
   color: #fff;
 }
 
-.music-list li.playing {
+.audio-list li.playing {
   color: #fff;
   padding-left: 10px;
   background-color: #000;
@@ -117,13 +117,15 @@ body {
 
 #cas {
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 450px;
+  top: 50px;
   bottom: 0;
   right: 0;
   margin: auto;
-  background: #000 ;
+  background: #000000 ;
 }
 
 .music-player {
 }
+/* CSS Document */
+
