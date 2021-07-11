@@ -21,6 +21,12 @@
 
   var AC = new AudioContext();
 
+  const streamNode = AC.createMediaStreamDestination();
+  const audioElem = new Audio();
+  audioElem.controls = true;
+  document.body.appendChild(audioElem);
+  audioElem.srcObject = streamNode.stream;
+
   // analyser为analysernode，具有频率的数据，用于创建数据可视化
   var analyser = AC.createAnalyser();
 
@@ -84,12 +90,17 @@
         $('.music-file').click();
       });
 
+      var index=0;
 		//将添加的音乐文件在音乐列表中显示出来
       $(".music-list").on("click", "li", function() {
 		  //定义在列表里点击的音乐为索引
-        var index = $(".music-list li").index($(this));
+        index = $(".music-list li").index($(this));
         that.trigger(index);//对索引进行调用触发
       });
+
+      $(".music-player")[0].addEventListener("pause", function () {   // 暂停时会触发，当播放完一首歌曲时也会触发
+        that.trigger(index,1);//对索引进行调用触发
+      })
 
       //如果用户选取了自己的音乐则通过filereader读取
       $('.music-file').on('change', function() {
@@ -121,13 +132,19 @@
       });
     },
 
-    trigger: function(index) {
+    trigger: function(index,status) {
 		//如果索引长度大于音乐播放缓存区的长度，则执行第一个，否则执行第二个
       index = index >= musics.length ? 0 : index;
 
       if (musics[index].decoding)return;
-
-      this.stop();
+      
+      if(status==1){
+        this.stop();
+        return
+      }else{
+        this.stop();
+      }
+      
 
       nowIndex = index;//把索引的音乐给到当前播放
 		
@@ -139,7 +156,7 @@
         chooseMusic(musics[index].src);
       } 
 		else if (musics[index].buffer) {
-        playMusic(musics[index].buffer);
+        playMusic(musics[index].buffer,status);
       }
     },
 
@@ -157,7 +174,7 @@
 		  audio.pause();
 
       if (bufferSource && ('stop' in bufferSource)) 
-		  bufferSource.stop();
+      bufferSource.stop();
 
       try {//try catch用来捕获错误，未定义也能运行
         if (bufferSource) {
@@ -193,7 +210,7 @@
   function chooseMusic(src) {
     audio.src = src;
     audio.load();
-    playMusic(audio);
+   playMusic(audio);
   }
 
   //对音频buffer进行解码
@@ -206,6 +223,7 @@
   }
 
   //音频播放
+  var that = this
   function playMusic(arg) {
     var source;
     //如果arg是audio的dom对象，则转为相应的源
@@ -224,6 +242,7 @@
       //播放音频
       setTimeout(function() {
         bufferSource.start()
+//        audio.play()
       }, 0);
 
       source = bufferSource;

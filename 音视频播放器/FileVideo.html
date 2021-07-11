@@ -1,49 +1,37 @@
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="UTF-8"/>
-        <title>视频播放器</title>
-		<link rel="stylesheet" href="Video.css"/>
-        <script src="jquery-3.6.0.min.js"></script>
-        <style>
-            .video-play-panel {
-                position:relative;
-                width: 800px;
-            }
-            
-        </style>
-    <a href="FileAudio.html"><button id="audio">切换到音乐播放器</button></a>
+        <title>音乐播放器</title>
+<!--连接css文件-->
+        <link rel="stylesheet" href="Video.css"/>
     </head>
-<body>
-        <div class="video-play-panel">
-            <video width="1080" height="660" id="video-element" controls="controls" >
-              <source src="" id="video_here" align="center" >
-            </video>
-	</div>
-	<div class="right_side">
-				<button class="add_video">添加视频</button>
-				<input name="file[]" type="file" class="file_multi_video" accept="video/*">
+    <body>
+        <div class="view">
+           <div class="left-side"><!-- 创建左边列表-->
+                <div class="control">
+                    <div class="o-btns"><!--控制按钮-->
+                        <a href="FileAudio.html"><button id="video">音频</button></a>
+                        <button class="add-video">本地视频</button>
+                        <input type="file" class="video-file" id="file" accept="video/mp4" multiple="true"/>
+                    </div>
+                </div>
 				
-			</div>
-</body>
-    <script>
+				<!--创建视频列表-->
+                <div class="video-contain">
+                    <ul class="video-list"></ul>
+                </div>
+            </div>
 			
-        player = document.getElementById('video-element');
-		
-        //使用on绑定change事件，获取input实时输入值
-		$(document).on("change", ".file_multi_video", function(evt) {
-            var $source = $('#video_here');
-            $source[0].src = URL.createObjectURL(this.files[0]);
-            $source.parent()[0].load();
-        })
-		
-        // Updates a button's title, innerHTML and CSS class
-        function changeButtonType(btn, value) {
-            btn.title     = value;
-            btn.className = value;
-        }
-        document.addEventListener('contextmenu', event => event.preventDefault());
-    	
-    </script>
+			<!--创建视频控制控件-->
+            <video  preload="auto"
+				   style="width: 800px;height: 600px; margin-left: 400px;margin-top:100px"
+				   controls="controls" ></video>
+        </div>
 
+		<!--连接js文件-->
+        <script src="jquery-3.6.0.min.js"></script>
+        <script src="video_main.js"></script>
+    </body>
 </html>
