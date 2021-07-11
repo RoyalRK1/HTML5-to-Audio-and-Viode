@@ -1,5 +1,5 @@
 (function() {
-	
+	/* eslint-disable */ //用来处理空格与制表符混合错误
 //	document.getElementById();这句话的意思是根据id来获取指定id的控件对象
   var canvas = document.getElementById("cas");//获取画布对象
   var ctx = canvas.getContext("2d");//定义画布类型为2d
@@ -8,7 +8,7 @@
   outcanvas.height = canvas.height / 2;
   var octx = outcanvas.getContext('2d');
 
-  // audioSource 为音频源，bufferSource为buffer源
+  // audioSource 为音频源，bufferSource为buffer缓冲源
   var audioSource, bufferSource;
 
   //实例化音频对象
@@ -37,33 +37,37 @@
 
   //播放音乐
   var audio = $(".music-player")[0];
-	//jquery.js 中将 jquery 变量赋值给了 ＄ 符号。
-  var musics = [{
-    name: "",
-    src: ""
+	//jquery.js 中将 jquery 变量赋值给了 ＄ 符号，通过$来调用JQuery库。
+  
+	//定义一个音乐的播放空间
+	var musics = [{
+    name: "稻香",
+    src: "music.mp3"
   }];
-  var nowIndex = 0;   //当前播放到的音乐索引
+  var nowIndex = 0;   //当前正在播放的音乐索引
   var singleLoop = false; //是否单曲循环
 
   var app = {	  //初始化
     init: function() {
-      this.render(musics);
+      this.render(musics);//提供音乐内存提供
 
-      this.bind();
+      this.bind();//一个音乐播放结束事件
 
-      this.trigger(0);
+      this.trigger(0);//触发
     },
 
     bind: function() {
       var that = this;
 		//当音频播放结束时触发
-      audio.onended = function() {	  //被选择的元素要触发的事件
+      audio.onended = function() {	  
+		  //被选择的元素要触发的事件，循环播放还是播放下一首
         app.trigger(singleLoop ? nowIndex : (nowIndex + 1));
       };
 
-		//单曲循环的点击事件
+		//单曲/列表循环的点击事件
       $(".play-type").on("click", function() {
         singleLoop = !singleLoop;
+		  //点击后，在页面上切换单曲/列表循环的显示
         $(this).html(singleLoop ? "列表循环" : "单曲循环");
       });
 
@@ -74,14 +78,17 @@
         $(this).html(ismuti ? "取消静音" : "静音");
       });
 			
-      
+      //添加音乐按钮
 		$(".add-music").on('click', function() {
+			//将点击添加音乐按钮，定义为点击上传文件的按钮
         $('.music-file').click();
       });
 
+		//将添加的音乐文件在音乐列表中显示出来
       $(".music-list").on("click", "li", function() {
+		  //定义在列表里点击的音乐为索引
         var index = $(".music-list li").index($(this));
-        that.trigger(index);
+        that.trigger(index);//对索引进行调用触发
       });
 
       //如果用户选取了自己的音乐则通过filereader读取
@@ -101,8 +108,8 @@
 
           musics.push(mdata);
 
-          fr.onload = function(e) {
-            decodeBuffer(e.target.result, function(buffer) {
+          fr.onload = function(i) {
+            decodeBuffer(i.target.result, function(buffer) {
               mdata.buffer = buffer;
               mdata.decoding = false;
               $(".music-list li").eq(musics.indexOf(mdata)).html(mdata.name);
@@ -115,36 +122,44 @@
     },
 
     trigger: function(index) {
+		//如果索引长度大于音乐播放缓存区的长度，则执行第一个，否则执行第二个
       index = index >= musics.length ? 0 : index;
 
       if (musics[index].decoding)return;
 
       this.stop();
 
-      nowIndex = index;
+      nowIndex = index;//把索引的音乐给到当前播放
 		
 		//获取列表播放
       $(".music-list li").eq(index).addClass("playing").siblings().removeClass("playing");
 
+		//获取点击歌曲的播放资源
       if (musics[index].src) {
         chooseMusic(musics[index].src);
-      } else if (musics[index].buffer) {
+      } 
+		else if (musics[index].buffer) {
         playMusic(musics[index].buffer);
       }
     },
 
     stop: function() {
+		//GainNode接口提供音量控制.
       var ismuti = !!gainnode.gain.value;
 
+		//静音
       if (!ismuti) {
         gainnode.gain.value = 0;
       }
 
-      if (!audio.ended || !audio.paused) audio.pause();
+		//音乐暂停
+      if (!audio.ended || !audio.paused) 
+		  audio.pause();
 
-      if (bufferSource && ('stop' in bufferSource)) bufferSource.stop();
+      if (bufferSource && ('stop' in bufferSource)) 
+		  bufferSource.stop();
 
-      try {
+      try {//try catch用来捕获错误，未定义也能运行
         if (bufferSource) {
           bufferSource.disconnect(analyser);
           bufferSource.disconnect(AC.destination);
@@ -154,7 +169,7 @@
           audioSource.disconnect(analyser);
           audioSource.disconnect(AC.destination);
         }
-      } catch (e) {
+      } catch (e) {//用来捕捉错误
       }
 
       if (!ismuti) {

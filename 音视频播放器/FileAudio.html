@@ -9,15 +9,14 @@
     </head>
     <body>
         <div class="view">
-            <div class="left-side">
+           <div class="left-side"><!-- 创建左边列表-->
                 <div class="control">
-                    <div class="o-btns">
+                    <div class="o-btns"><!--控制按钮-->
                         <a href="FileVideo.html"><button id="video">视频</button></a>
                         <button class="play-type">单曲循环</button>
                         <button class="add-music">本地歌曲</button>
                         <input type="file" class="music-file" accept="audio/mp3" multiple="true"/>
                         <button class="muti">静音</button>
-
                     </div>
                 </div>
 				
@@ -30,7 +29,9 @@
 			<!--创建音乐控制控件-->
             <div class="right-side">
                 <audio preload autopaly class="music-player" controls="controls"></audio>
-                <canvas id="cas" width="825" height="540"></canvas>
+                
+				<!--创建右侧画布控件-->
+				<canvas id="cas" width="825" height="540"></canvas>
             </div>
         </div>
 
