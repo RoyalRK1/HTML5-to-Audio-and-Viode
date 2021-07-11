@@ -1,6 +1,8 @@
 (function() {
-  var canvas = document.getElementById("cas");
-  var ctx = canvas.getContext("2d");
+	
+//	document.getElementById();这句话的意思是根据id来获取指定id的控件对象
+  var canvas = document.getElementById("cas");//获取画布对象
+  var ctx = canvas.getContext("2d");//定义画布类型为2d
   var outcanvas = document.createElement("canvas");
   outcanvas.width = canvas.width;
   outcanvas.height = canvas.height / 2;
@@ -43,8 +45,7 @@
   var nowIndex = 0;   //当前播放到的音乐索引
   var singleLoop = false; //是否单曲循环
 
-  var app = {
-	  //初始化
+  var app = {	  //初始化
     init: function() {
       this.render(musics);
 
@@ -56,8 +57,7 @@
     bind: function() {
       var that = this;
 		//当音频播放结束时触发
-      audio.onended = function() {
-		  //被选择的元素要触发的事件
+      audio.onended = function() {	  //被选择的元素要触发的事件
         app.trigger(singleLoop ? nowIndex : (nowIndex + 1));
       };
 

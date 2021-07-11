@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8"/>
         <title>音乐播放器</title>
+<!--连接css文件-->
         <link rel="stylesheet" href="Audio_style.css"/>
     </head>
     <body>
@@ -19,18 +20,21 @@
 
                     </div>
                 </div>
-
+				
+				<!--创建音乐列表-->
                 <div class="music-contain">
                     <ul class="music-list"></ul>
                 </div>
             </div>
-
+			
+			<!--创建音乐控制控件-->
             <div class="right-side">
                 <audio preload autopaly class="music-player" controls="controls"></audio>
                 <canvas id="cas" width="825" height="540"></canvas>
             </div>
         </div>
 
+		<!--连接js文件-->
         <script src="jquery-3.6.0.min.js"></script>
         <script src="Audio_main.js"></script>
     </body>
