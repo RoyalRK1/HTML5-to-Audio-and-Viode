@@ -15,6 +15,10 @@
                         <button class="add-audio">本地音乐</button>
 					
                         <input type="file" class="audio-file" id="file" accept="audio/mp3" multiple="true"/>
+						<button class="add-audio-lyric" id="fileImport">本地歌词</button>
+                        <input type="file" class="audio-lyric-file" id="files" multiple="true"
+							   accept="/lrc"
+							   onchange="fileImport();"/>
                     </div>
                 </div>
 				
@@ -36,6 +40,7 @@
 		
 			<!--创建右侧画布控件-->
 			<div class="cas" id="stage"  width="825" height="540">
+				<div class="bg"></div>
 				<img id="needle" class="play-needle pause-needle" src="play_needle.png"/>
         
       				<div class="disk-cover disk-cover-animation">

@@ -130,8 +130,8 @@ body {
 /*唱片指针*/
 .play-needle {
     position: absolute;
-    top: 225px;
-    left: 445px;
+    top: 240px;
+    left: 300px;
     margin: 0px -12px;
     z-index: 10;
     width: 50px;
@@ -153,14 +153,48 @@ body {
 /*唱片中心*/
 .album {
     position: absolute;
-		left: 355px;
+		left: 195px;
     top: 294px;
 }
 /*唱片边缘*/
 .disk-border {
     position: absolute;
-		left: 330px;
+		left: 170px;
     top: 270px;
 }
 
-/* CSS Document */
+.bg {
+  /* 歌词调整区 */
+  width: 200;/* 歌词显示盒子宽 */
+			left: 30px;
+  height: 200px;/* 歌词显示盒子高度，需要多显示几行歌词相应调大即可 */
+  /* background-color:#333; */ /* 歌词背景颜色 */
+  margin: 15px auto;
+  color: darkgrey;/* 歌词默认颜色,灰色 */
+  font-size: 12px;/* 歌词字体默认大小 */
+  overflow: hidden;
+  position: relative;
+  font-family: "微软雅黑";
+}
+
+.bg ul {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  list-style: none;
+}
+
+.bg ul li {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.bg ul li.active {
+  /* 歌词高亮滚动区 */
+  color: #ffffff;/* 歌词滚动高亮颜色 */
+  /* font-weight: bold; *//* 文本加粗，不要，太丑了！ */
+  font-size: 15px; /* 歌词滚动行文字大小 */
+}
