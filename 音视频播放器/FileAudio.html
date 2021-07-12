@@ -18,21 +18,32 @@
                     </div>
                 </div>
 				
-				<!--创建视频列表-->
+				<!--创建音乐列表-->
                 <div class="audio-contain">
                     <ul class="audio-list"></ul>
                 </div>
             </div>
 			
 			
-			<!--创建视频控制控件-->
+			<!--创建音乐控制控件-->
             <audio  preload="auto"
 				   style="width: 960px;height: 50px; margin-left: 450px;margin-top:50px"
-				   controls="controls" ></audio>
+				   controls onpause="pauseFunction()"
+				    onPlay="playFunction()"
+				   ></audio>
+			<li></li>
+			</div>
+		
 			<!--创建右侧画布控件-->
-			
-			<canvas id="cas" width="825" height="540"></canvas>
-        </div>
+			<div class="cas" id="stage"  width="825" height="540">
+				<img id="needle" class="play-needle pause-needle" src="play_needle.png"/>
+        
+      				<div class="disk-cover disk-cover-animation">
+						<img src="placeholder_disk_play_song.png" width="150" class="album"/>
+						<img src="play_disc.png" width="200" class="disk-border"/>
+					</div>
+
+		  </div>
 
 		<!--连接js文件-->
         <script src="jquery-3.6.0.min.js"></script>
