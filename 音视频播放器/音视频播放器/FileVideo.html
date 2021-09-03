@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>视频播放器</title>
+<!--连接css文件-->
+        <link rel="stylesheet" href="Video.css"/>
+    </head>
+    <body>
+        <div class="view">
+           <div class="left-side"><!-- 创建左边列表-->
+                <div class="control">
+                    <div class="o-btns"><!--控制按钮-->
+                        <a href="FileAudio.html"><button id="audio">切换音频</button></a>
+                        <button class="add-video">本地视频</button>
+                        <input type="file" class="video-file" id="file" accept="video/mp4" multiple="true"/>
+						
+                    </div>
+                </div>
+				
+				<!--创建视频列表-->
+                <div class="video-contain">
+                    <ul class="video-list"></ul>
+                </div>
+            </div>
+			
+			<!--创建视频控制控件-->
+            <video  preload="auto"
+				   style="width: 960px;height: 660px; margin-left: 450px;margin-top:50px"
+				   controls="controls"></video>
+        </div>
+
+		<!--连接js文件-->
+        <script src="jquery-3.6.0.min.js"></script>
+        <script src="video_main.js"></script>
+    </body>
+</html>

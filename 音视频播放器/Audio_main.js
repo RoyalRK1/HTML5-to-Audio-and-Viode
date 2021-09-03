@@ -9,7 +9,7 @@
  //     $("#files").click();
  // })
  var audio=[];
- //如果用户选取了自己的视频则通过filereader读取
+ //如果用户选取了自己的音乐则通过filereader读取
  $('.audio-file').on('change', function(e) {
      for (var i = 0; i < e.target.files.length; i++) {
 
